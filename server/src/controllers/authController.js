@@ -14,8 +14,9 @@ export const register = asyncHandler(async (req, res) => {
   }
 
   const { name, email, password } = req.body;
-
+  console.log(name);
   let user = await User.findOne({ email });
+  console.log(user);
   if (user) {
     return res.status(400).json({
       success: false,
@@ -25,9 +26,9 @@ export const register = asyncHandler(async (req, res) => {
 
   user = new User({ name, email, password, role: "user" });
   await user.save();
-
+  console.log(user);
   const token = generateToken(user._id);
-
+  console.log(token);
   res.status(201).json({
     success: true,
     data: {
