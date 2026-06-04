@@ -30,11 +30,17 @@ app.use(helmet());
 app.use(morgan("combined"));
 app.use(
   cors({
-    origin: [
-      "https://rent-a-drive.vercel.app",
-      "https://rent-a-drive-b1mxq4460-mahammad-abdullayevs-projects.vercel.app",
-      process.env.CLIENT_URL || "http://localhost:3000",
-    ],
+    origin: function (origin, callback) {
+      if (
+        !origin ||
+        origin.endsWith(".vercel.app") ||
+        origin === process.env.CLIENT_URL
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS policy violation"));
+      }
+    },
     credentials: true,
   }),
 );
