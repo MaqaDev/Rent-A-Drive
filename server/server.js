@@ -1,8 +1,6 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import path from "path";
-import { fileURLToPath } from "url";
 import morgan from "morgan";
 import helmet from "helmet";
 import connectDB from "./src/config/db.js";
@@ -20,10 +18,6 @@ dotenv.config();
 // Initialize express app
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-// Get __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // Middleware
 app.use(helmet());
@@ -57,14 +51,6 @@ app.use("/api/payments", paymentRoutes);
 app.get("/api/health", (req, res) => {
   res.status(200).json({ success: true, message: "Server is running" });
 });
-
-// Serve React client in production
-if (process.env.NODE_ENV !== "production") {
-  app.use(express.static(path.join(__dirname, "../client/dist")));
-  app.get("*", (req, res) =>
-    res.sendFile(path.join(__dirname, "../client/dist/index.html")),
-  );
-}
 
 // 404 handler
 app.use((req, res) => {
