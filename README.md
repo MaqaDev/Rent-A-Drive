@@ -14,6 +14,7 @@ A production-ready full-stack MERN (MongoDB, Express, React, Node.js) car rental
 ## Features
 
 ✨ **User-Facing**
+
 - 🔐 Secure JWT-based authentication with role-based access control
 - 🚗 Browse, filter, and search 12+ cars by category, price, and availability
 - 📅 Intuitive date-picker for car bookings with instant availability checking
@@ -23,6 +24,7 @@ A production-ready full-stack MERN (MongoDB, Express, React, Node.js) car rental
 - ⭐ Car ratings and reviews system
 
 🛠️ **Admin Features**
+
 - 📊 Dashboard with revenue and booking analytics
 - 🚗 Complete car inventory management (CRUD operations)
 - 📋 Booking management with status updates
@@ -32,6 +34,7 @@ A production-ready full-stack MERN (MongoDB, Express, React, Node.js) car rental
 ## Tech Stack
 
 ### Backend
+
 - **Express.js** (4.18.2) - RESTful API framework
 - **MongoDB & Mongoose** (7.5.0) - Document database with schema validation
 - **JWT** (8.5.1) - Stateless authentication tokens
@@ -43,6 +46,7 @@ A production-ready full-stack MERN (MongoDB, Express, React, Node.js) car rental
 - **express-validator** - Input validation
 
 ### Frontend
+
 - **React 18.2** - UI library with hooks
 - **Vite 5.0** - Lightning-fast build tool
 - **React Router v6** - Client-side routing
@@ -53,6 +57,7 @@ A production-ready full-stack MERN (MongoDB, Express, React, Node.js) car rental
 - **React Icons** - Icon library
 
 ### DevOps & Deployment
+
 - **Vercel** - Serverless deployment (frontend + backend)
 - **GitHub** - Version control and CI/CD
 - **MongoDB Atlas** - Cloud database hosting
@@ -74,12 +79,14 @@ npm --version
 ### Installation
 
 1. **Install dependencies** (both server and client)
+
    ```bash
    npm install
    cd server && npm install && cd ../client && npm install
    ```
 
 2. **Configure environment variables**
+
    ```bash
    # Server - create server/.env
    MONGODB_URI=mongodb+srv://...
@@ -91,7 +98,7 @@ npm --version
    CLOUDINARY_API_KEY=your_api_key
    CLOUDINARY_API_SECRET=your_api_secret
    STRIPE_SECRET_KEY=sk_test_mock...
-   
+
    # Client - create client/.env
    VITE_API_BASE_URL=http://localhost:5000
    VITE_STRIPE_PUBLISHABLE_KEY=pk_test_mock...
@@ -105,18 +112,23 @@ npm --version
 ### Running Locally
 
 **Terminal 1 - Backend (from project root)**
+
 ```bash
 npm run server
 ```
+
 API runs on http://localhost:5000
 
 **Terminal 2 - Frontend (from project root)**
+
 ```bash
 npm run client
 ```
+
 App runs on http://localhost:3000
 
 **Alternative: Run both concurrently**
+
 ```bash
 npm run dev
 ```
@@ -125,10 +137,10 @@ npm run dev
 
 After seeding, use these accounts:
 
-| Role | Email | Password | Access |
-|------|-------|----------|--------|
-| Admin | `admin@rentadrive.com` | `Admin1234!` | Full dashboard + all CRUD |
-| User | `user@rentadrive.com` | `User1234!` | Browse, book, manage own bookings |
+| Role  | Email                  | Password     | Access                            |
+| ----- | ---------------------- | ------------ | --------------------------------- |
+| Admin | `admin@rentadrive.com` | `Admin1234!` | Full dashboard + all CRUD         |
+| User  | `user@rentadrive.com`  | `User1234!`  | Browse, book, manage own bookings |
 
 ## Project Structure
 
@@ -166,6 +178,7 @@ Rent-A-Drive/
 ## API Endpoints
 
 ### Authentication
+
 ```
 POST   /api/auth/register      Register new user
 POST   /api/auth/login         User login → JWT token
@@ -173,6 +186,7 @@ GET    /api/auth/me            Get current user (Protected)
 ```
 
 ### Cars
+
 ```
 GET    /api/cars               List all cars + filters
 GET    /api/cars/:id           Get single car details
@@ -182,11 +196,13 @@ DELETE /api/cars/:id           Delete car (Admin only)
 ```
 
 Query filters for GET /api/cars:
+
 - `category=sedan` - Filter by car type
 - `minPrice=40&maxPrice=100` - Price range filter
 - `available=true` - Availability filter
 
 ### Bookings
+
 ```
 POST   /api/bookings           Create booking (Protected)
 GET    /api/bookings/my        User's bookings (Protected)
@@ -196,6 +212,7 @@ DELETE /api/bookings/:id       Cancel booking
 ```
 
 ### Payments
+
 ```
 POST   /api/payments/create-payment-intent   Create Stripe intent
 POST   /api/payments/confirm                 Confirm payment
@@ -205,6 +222,7 @@ POST   /api/payments/webhook                 Stripe webhook
 ## Database Schema
 
 ### User
+
 ```javascript
 {
   name: String,
@@ -216,6 +234,7 @@ POST   /api/payments/webhook                 Stripe webhook
 ```
 
 ### Car
+
 ```javascript
 {
   make: String,
@@ -237,6 +256,7 @@ POST   /api/payments/webhook                 Stripe webhook
 ```
 
 ### Booking
+
 ```javascript
 {
   user: ObjectId (User ref),
@@ -255,6 +275,7 @@ POST   /api/payments/webhook                 Stripe webhook
 ## Testing
 
 ### Backend Tests
+
 ```bash
 cd server
 npm test                # Run all tests
@@ -263,6 +284,7 @@ npm run test:watch     # Watch mode
 ```
 
 ### Frontend Tests
+
 ```bash
 cd client
 npm test                # Run all tests
@@ -275,13 +297,16 @@ For detailed test setup and examples, see [TESTING.md](TESTING.md).
 ## Building for Production
 
 ### Build Client
+
 ```bash
 cd client
 npm run build
 ```
+
 Output: `client/dist/` (optimized React bundle)
 
 ### Build Complete App
+
 ```bash
 npm run build  # From root
 ```
@@ -291,17 +316,20 @@ npm run build  # From root
 ### Deploy to Vercel
 
 **Option 1: CLI (Automated)**
+
 ```bash
 vercel --prod
 ```
 
 **Option 2: GitHub Integration**
+
 1. Push code to GitHub
 2. Import repository in Vercel dashboard
 3. Set environment variables
 4. Vercel auto-deploys on push
 
 **Required Environment Variables in Vercel:**
+
 - `MONGODB_URI`
 - `JWT_SECRET`
 - `CLOUDINARY_*` (3 variables)
@@ -331,6 +359,7 @@ For step-by-step deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
 ## Troubleshooting
 
 ### Port Already in Use
+
 ```bash
 # Kill process on port 5000
 lsof -ti:5000 | xargs kill -9  # macOS/Linux
@@ -339,16 +368,19 @@ Get-Process -Id (Get-NetTCPConnection -LocalPort 5000).OwningProcess | Stop-Proc
 ```
 
 ### MongoDB Connection Failed
+
 - Check connection string in `.env`
 - Verify IP whitelist in MongoDB Atlas (allow 0.0.0.0/0)
 - Ensure database name is correct
 
 ### Stripe Payment Fails
+
 - Use test card: `4242 4242 4242 4242`
 - Any future date and any CVC
 - Check that `STRIPE_SECRET_KEY` is set
 
 ### CORS Errors
+
 - Verify `CLIENT_URL` in server `.env`
 - Check API base URL in client `.env`
 - Ensure middleware order in server.js
@@ -385,6 +417,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Support
 
 For issues and questions:
+
 - 📧 Email: admin@rentadrive.com
 - 📝 GitHub Issues: [Create an issue](https://github.com/abdullayevmhmmd/Rent-A-Drive/issues)
 - 💬 Discussions: [GitHub Discussions](https://github.com/abdullayevmhmmd/Rent-A-Drive/discussions)

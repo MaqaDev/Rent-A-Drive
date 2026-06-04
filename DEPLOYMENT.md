@@ -1,9 +1,11 @@
 # Deployment Guide - Rent-A-Drive
 
 ## Overview
+
 This is a full-stack MERN (MongoDB, Express, React, Node.js) application. Deployment involves pushing code to GitHub and deploying via Vercel.
 
 ## Prerequisites
+
 - GitHub account with token (`github_pat_*` format)
 - Vercel account with token
 - All environment variables configured
@@ -11,6 +13,7 @@ This is a full-stack MERN (MongoDB, Express, React, Node.js) application. Deploy
 ## Step 1: GitHub Repository Setup
 
 ### Option A: Create Repository via Web UI
+
 1. Go to https://github.com/new
 2. Enter repository name: `Rent-A-Drive`
 3. Select "Public"
@@ -18,6 +21,7 @@ This is a full-stack MERN (MongoDB, Express, React, Node.js) application. Deploy
 5. Copy the HTTPS URL (e.g., `https://github.com/YOUR_USERNAME/Rent-A-Drive.git`)
 
 ### Option B: Create Repository via GitHub CLI
+
 ```bash
 gh repo create Rent-A-Drive --public --source=. --remote=origin --push
 ```
@@ -35,7 +39,9 @@ git push -u origin main
 ```
 
 ### Troubleshooting Git Push
+
 If you encounter authentication issues:
+
 ```bash
 # Use personal access token as password when prompted
 git clone https://github.com/YOUR_USERNAME/Rent-A-Drive.git
@@ -55,7 +61,9 @@ vercel --prod
 ```
 
 ### Configuration Steps
+
 When prompted:
+
 1. **Set project name**: `rent-a-drive`
 2. **Select source code**: `./` (current directory)
 3. **Build command**: `npm run build` (for monorepo: custom)
@@ -88,21 +96,25 @@ VITE_API_BASE_URL=https://rent-a-drive.vercel.app/api
 Since this is a monorepo, you may need custom build settings:
 
 **Build Command:**
+
 ```bash
 npm install && npm --prefix server install && npm --prefix client run build
 ```
 
 **Install Command:**
+
 ```bash
 npm install && npm --prefix server install && npm --prefix client install
 ```
 
 **Output Directory:**
+
 ```
 client/dist
 ```
 
 **Web Directory:**
+
 ```
 (leave empty)
 ```
@@ -112,6 +124,7 @@ client/dist
 The backend API needs to be deployed separately or as part of the Vercel function.
 
 ### Option A: Deploy Backend Separately (Recommended)
+
 Deploy to Railway, Render, Heroku, or similar:
 
 1. Push repository to GitHub
@@ -120,12 +133,13 @@ Deploy to Railway, Render, Heroku, or similar:
 4. Deploy
 
 ### Option B: Deploy as Vercel Function
+
 Create `api/index.js` that exports the Express app for Vercel serverless functions.
 
 ## Post-Deployment Verification
 
 1. **Test Frontend**: Visit https://rent-a-drive.vercel.app
-2. **Test Auth Endpoints**: 
+2. **Test Auth Endpoints**:
    ```bash
    curl https://rent-a-drive.vercel.app/api/auth/me
    ```
@@ -148,22 +162,26 @@ Create `api/index.js` that exports the Express app for Vercel serverless functio
 ## Troubleshooting
 
 ### Build Fails
+
 - Check `client/src/` for syntax errors
 - Verify all imports are correct
 - Clear npm cache: `npm cache clean --force`
 
 ### API Not Responding
+
 - Check backend environment variables in Vercel
 - Verify MongoDB connection string is correct
 - Check CORS settings in server.js
 - Review Vercel logs for error messages
 
 ### Database Connection Issues
+
 - Verify IP whitelist in MongoDB Atlas (allow all IPs: 0.0.0.0/0)
 - Check connection string format
 - Ensure database name is correct
 
 ### Authentication Fails
+
 - Verify JWT_SECRET is set
 - Check token expiration (30 days)
 - Clear browser localStorage and try again
