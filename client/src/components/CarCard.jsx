@@ -1,13 +1,17 @@
 import { FiImage } from "react-icons/fi";
 import { formatPrice } from "../utils/priceCalc.js";
+import { Link } from "react-router-dom"; // 1. Link komponentini import edirik
 
 export const CarCard = ({ car, onBook }) => {
-  const handleBook = () => {
+  const handleBook = (e) => {
+    e.stopPropagation();
     onBook?.(car._id);
   };
 
   return (
-    <div className='bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition transform hover:scale-105'>
+    <Link
+      to={`/cars/${car._id}`}
+      className='block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition transform hover:scale-105 no-underline text-inherit cursor-pointer'>
       <div className='h-48 bg-gray-300 relative flex items-center justify-center overflow-hidden'>
         {car.images && car.images.length > 0 ? (
           <img
@@ -64,6 +68,6 @@ export const CarCard = ({ car, onBook }) => {
           Book Now
         </button>
       </div>
-    </div>
+    </Link>
   );
 };

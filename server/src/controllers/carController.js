@@ -51,6 +51,9 @@ export const createCar = asyncHandler(async (req, res) => {
     features,
     description,
     location,
+    mileage,
+    engineSize,
+    fuelConsumption,
   } = req.body;
 
   if (
@@ -60,7 +63,10 @@ export const createCar = asyncHandler(async (req, res) => {
     !category ||
     !transmission ||
     !seats ||
-    !pricePerDay
+    !pricePerDay ||
+    !mileage ||
+    !engineSize ||
+    !fuelConsumption
   ) {
     return res.status(400).json({
       success: false,
@@ -79,6 +85,9 @@ export const createCar = asyncHandler(async (req, res) => {
     features: features ? features.split(",") : [],
     description,
     location,
+    mileage,
+    engineSize,
+    fuelConsumption,
     images: [],
   });
 
@@ -141,6 +150,9 @@ export const updateCar = asyncHandler(async (req, res) => {
     "location",
     "rating",
     "numReviews",
+    "mileage",
+    "engineSize",
+    "fuelConsumption",
   ];
   const updates = {};
 

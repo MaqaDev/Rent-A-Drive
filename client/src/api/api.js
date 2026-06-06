@@ -17,6 +17,8 @@ export const deleteCar = (id) => apiClient.delete(`/cars/${id}`);
 export const createBooking = (data) => apiClient.post("/bookings", data);
 export const getUserBookings = () => apiClient.get("/bookings/my");
 export const getAllBookings = () => apiClient.get("/bookings");
+export const requestBookingReturn = (id) =>
+  apiClient.put(`/bookings/${id}/request-return`);
 export const updateBookingStatus = (id, status) =>
   apiClient.put(`/bookings/${id}/status`, { status });
 export const cancelBooking = (id) => apiClient.delete(`/bookings/${id}`);

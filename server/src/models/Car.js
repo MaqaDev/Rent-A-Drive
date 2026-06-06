@@ -56,6 +56,18 @@ const CarSchema = new mongoose.Schema({
   },
   description: String,
   location: String,
+  mileage: {
+    type: Number,
+    required: [true, "Please provide car mileage"],
+  },
+  engineSize: {
+    type: String,
+    required: [true, "Please provide engine size"],
+  },
+  fuelConsumption: {
+    type: String,
+    required: [true, "Please provide fuel consumption"],
+  },
   createdAt: {
     type: Date,
     default: Date.now,

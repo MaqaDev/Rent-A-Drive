@@ -87,6 +87,9 @@ const seedDatabase = async () => {
         numReviews: 45,
         description: "Comfortable and reliable sedan for everyday driving.",
         location: "Downtown",
+        mileage: 25000,
+        engineSize: "2.5L",
+        fuelConsumption: "7.1L / 100km",
       },
       {
         make: "Honda",
@@ -103,6 +106,9 @@ const seedDatabase = async () => {
         numReviews: 52,
         description: "Sporty and fuel-efficient sedan.",
         location: "Downtown",
+        mileage: 18000,
+        engineSize: "1.5L Turbo",
+        fuelConsumption: "6.5L / 100km",
       },
       {
         make: "Tesla",
@@ -119,6 +125,9 @@ const seedDatabase = async () => {
         numReviews: 89,
         description: "Luxury electric vehicle with cutting-edge technology.",
         location: "Airport",
+        mileage: 12000,
+        engineSize: "Electric Motor",
+        fuelConsumption: "0L (Electric)",
       },
       {
         make: "Toyota",
@@ -135,6 +144,9 @@ const seedDatabase = async () => {
         numReviews: 68,
         description: "Spacious SUV perfect for families and road trips.",
         location: "Airport",
+        mileage: 34000,
+        engineSize: "2.4L",
+        fuelConsumption: "8.2L / 100km",
       },
       {
         make: "Jeep",
@@ -156,6 +168,9 @@ const seedDatabase = async () => {
         numReviews: 73,
         description: "Adventure-ready SUV for off-road enthusiasts.",
         location: "Downtown",
+        mileage: 21000,
+        engineSize: "2.0L Turbo",
+        fuelConsumption: "9.8L / 100km",
       },
       {
         make: "BMW",
@@ -177,6 +192,9 @@ const seedDatabase = async () => {
         numReviews: 56,
         description: "Ultimate luxury sedan with premium amenities.",
         location: "Airport",
+        mileage: 15000,
+        engineSize: "3.0L TwinTurbo",
+        fuelConsumption: "8.5L / 100km",
       },
       {
         make: "Hyundai",
@@ -193,6 +211,9 @@ const seedDatabase = async () => {
         numReviews: 38,
         description: "Budget-friendly economy car for city driving.",
         location: "Downtown",
+        mileage: 42000,
+        engineSize: "2.0L",
+        fuelConsumption: "6.2L / 100km",
       },
       {
         make: "Chevrolet",
@@ -209,6 +230,9 @@ const seedDatabase = async () => {
         numReviews: 42,
         description: "Affordable electric car with excellent range.",
         location: "Airport",
+        mileage: 29000,
+        engineSize: "Electric Motor",
+        fuelConsumption: "0L (Electric)",
       },
       {
         make: "Mercedes",
@@ -230,6 +254,9 @@ const seedDatabase = async () => {
         numReviews: 64,
         description: "Elegant luxury sedan with superior comfort.",
         location: "Downtown",
+        mileage: 19000,
+        engineSize: "2.0L Turbo Hybrid",
+        fuelConsumption: "7.0L / 100km",
       },
       {
         make: "Ford",
@@ -251,6 +278,9 @@ const seedDatabase = async () => {
         numReviews: 51,
         description: "Versatile SUV with comfortable seating for families.",
         location: "Airport",
+        mileage: 31000,
+        engineSize: "2.3L EcoBoost",
+        fuelConsumption: "9.4L / 100km",
       },
       {
         make: "Audi",
@@ -272,6 +302,9 @@ const seedDatabase = async () => {
         numReviews: 47,
         description: "Premium German engineering with cutting-edge technology.",
         location: "Downtown",
+        mileage: 23000,
+        engineSize: "2.0L TFSI",
+        fuelConsumption: "7.4L / 100km",
       },
       {
         make: "Nissan",
@@ -293,6 +326,9 @@ const seedDatabase = async () => {
         numReviews: 39,
         description: "Practical sedan with modern features.",
         location: "Airport",
+        mileage: 38000,
+        engineSize: "2.5L",
+        fuelConsumption: "6.9L / 100km",
       },
     ];
 

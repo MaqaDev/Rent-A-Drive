@@ -48,7 +48,7 @@ function App() {
               />
 
               <Route
-                path='/checkout/:carId'
+                path='/checkout/:bookingId'
                 element={
                   <ProtectedRoute>
                     <Checkout />

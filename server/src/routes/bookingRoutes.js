@@ -6,6 +6,7 @@ import {
   getAllBookings,
   updateBookingStatus,
   cancelBooking,
+  requestCarReturn,
 } from "../controllers/bookingController.js";
 import { authenticate, isAdmin } from "../middleware/authMiddleware.js";
 
@@ -36,6 +37,8 @@ router.put(
   ],
   updateBookingStatus,
 );
+
+router.put("/:id/request-return", authenticate, requestCarReturn);
 
 router.delete("/:id", authenticate, cancelBooking);
 

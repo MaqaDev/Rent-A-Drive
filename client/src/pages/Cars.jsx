@@ -32,7 +32,8 @@ export const Cars = () => {
       navigate("/login");
       return;
     }
-    navigate(`/checkout/${carId}`);
+
+    navigate(`/cars/${carId}`);
   };
 
   return (
@@ -66,10 +67,14 @@ export const Cars = () => {
               </label>
               <input
                 type='number'
+                min='0'
                 value={priceMin}
-                onChange={(e) => setPriceMin(e.target.value)}
-                placeholder='$0'
-                className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary'
+                onChange={(e) => {
+                  const val = Number(e.target.value);
+                  if (val >= 0) setPriceMin(e.target.value);
+                }}
+                placeholder='Min Price'
+                className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
               />
             </div>
 
@@ -79,10 +84,14 @@ export const Cars = () => {
               </label>
               <input
                 type='number'
+                min='0'
                 value={priceMax}
-                onChange={(e) => setPriceMax(e.target.value)}
-                placeholder='$999'
-                className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary'
+                onChange={(e) => {
+                  const val = Number(e.target.value);
+                  if (val >= 0) setPriceMax(e.target.value);
+                }}
+                placeholder='Max Price'
+                className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
               />
             </div>
 
