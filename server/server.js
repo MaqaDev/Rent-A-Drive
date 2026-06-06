@@ -22,7 +22,6 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(helmet());
 app.use(morgan("combined"));
-app.use(cors({ origin: "http://localhost:3000" })); // Bunu silmelisen
 app.use(
   cors({
     origin: function (origin, callback) {
