@@ -23,16 +23,16 @@ export const Footer = () => {
               </li>
               <li>
                 <a
-                  href='/about'
+                  href='/login'
                   className='hover:text-secondary transition'>
-                  About Us
+                  Login
                 </a>
               </li>
               <li>
                 <a
-                  href='/contact'
+                  href='/register'
                   className='hover:text-secondary transition'>
-                  Contact
+                  Register
                 </a>
               </li>
             </ul>

@@ -84,6 +84,7 @@ export const Navbar = () => {
           <div className='md:hidden pb-4 border-t border-gray-700'>
             <Link
               to='/cars'
+              onClick={() => setIsOpen(false)}
               className='block py-2 hover:text-secondary transition'>
               Browse Cars
             </Link>
@@ -91,12 +92,14 @@ export const Navbar = () => {
               <>
                 <Link
                   to='/dashboard'
+                  onClick={() => setIsOpen(false)}
                   className='block py-2 hover:text-secondary transition'>
                   My Bookings
                 </Link>
                 {user?.role === "admin" && (
                   <Link
                     to='/admin'
+                    onClick={() => setIsOpen(false)}
                     className='block py-2 hover:text-secondary transition'>
                     Admin Panel
                   </Link>
@@ -111,11 +114,13 @@ export const Navbar = () => {
               <>
                 <Link
                   to='/login'
+                  onClick={() => setIsOpen(false)}
                   className='block py-2 hover:text-secondary transition'>
                   Login
                 </Link>
                 <Link
                   to='/register'
+                  onClick={() => setIsOpen(false)}
                   className='block py-2 text-secondary transition'>
                   Register
                 </Link>

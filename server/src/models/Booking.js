@@ -60,7 +60,8 @@ BookingSchema.pre(/^find/, function (next) {
     select: "name email",
   }).populate({
     path: "car",
-    select: "make model images",
+    select:
+      "make model year category transmission fuelType seats pricePerDay images available mileage engineSize fuelConsumption location description",
   });
   next();
 });

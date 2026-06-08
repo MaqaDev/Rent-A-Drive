@@ -88,19 +88,17 @@ export const CarDetail = () => {
             </div>
 
             {car.features && car.features.length > 0 && (
-              <div className='bg-gray-50 border border-gray-200 p-6 rounded-xl shadow-sm'>
-                <h3 className='text-2xl font-bold text-primary mb-4'>
+              <div className='bg-gray-50 border border-gray-200 p-4 rounded-xl shadow-sm'>
+                <h3 className='text-base font-bold text-primary mb-3'>
                   Features
                 </h3>
-                <div className='grid grid-cols-2 gap-3'>
+                <div className='grid grid-cols-2 gap-1.5'>
                   {car.features.map((feature, idx) => (
                     <div
                       key={idx}
-                      className='bg-blue-50 border-l-4 border-secondary p-3.5 rounded-lg flex items-center transition hover:bg-blue-100/50'>
-                      <span className='text-secondary text-lg font-bold mr-2.5'>
-                        ✓
-                      </span>
-                      <p className='text-base text-gray-800 font-semibold capitalize'>
+                      className='flex items-center gap-1.5 bg-blue-50 border-l-2 border-secondary px-2.5 py-1.5 rounded-md'>
+                      <span className='text-secondary text-xs font-bold shrink-0'>✓</span>
+                      <p className='text-xs text-gray-700 font-medium capitalize truncate'>
                         {feature}
                       </p>
                     </div>
@@ -132,6 +130,10 @@ export const CarDetail = () => {
                 <span className='capitalize'>{car.transmission}</span>
               </div>
               <div className='flex justify-between'>
+                <span className='font-semibold'>Fuel Type:</span>
+                <span className='capitalize'>{car.fuelType || "N/A"}</span>
+              </div>
+              <div className='flex justify-between'>
                 <span className='font-semibold'>Seats:</span>
                 <span>{car.seats}</span>
               </div>
@@ -159,61 +161,72 @@ export const CarDetail = () => {
               <h2 className='text-2xl font-bold text-primary mb-4'>
                 Book This Car
               </h2>
-              <div className='space-y-4'>
-                <div>
-                  <label className='block text-sm font-semibold mb-2'>
-                    Check-in Date
-                  </label>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date) => {
-                      setStartDate(date);
-                      setEndDate(null);
-                    }}
-                    selectsStart
-                    startDate={startDate}
-                    endDate={endDate}
-                    minDate={new Date()}
-                    excludeDateIntervals={bookedDates}
-                    placeholderText='Select start date'
-                    className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary bg-white'
-                  />
+              {!car.available ? (
+                <div className='bg-red-50 border border-red-200 rounded-lg p-5 text-center'>
+                  <p className='text-red-700 font-bold text-lg mb-1'>
+                    Currently Unavailable
+                  </p>
+                  <p className='text-red-500 text-sm'>
+                    This car is not available for booking at the moment.
+                  </p>
                 </div>
-
-                <div>
-                  <label className='block text-sm font-semibold mb-2'>
-                    Check-out Date
-                  </label>
-                  <DatePicker
-                    selected={endDate}
-                    onChange={(date) => setEndDate(date)}
-                    selectsEnd
-                    startDate={startDate}
-                    endDate={endDate}
-                    minDate={startDate || new Date()}
-                    maxDate={getMaxEndDate()}
-                    excludeDateIntervals={bookedDates}
-                    placeholderText='Select end date'
-                    disabled={!startDate}
-                    className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary bg-white disabled:bg-gray-200'
-                  />
-                </div>
-
-                <div className='border-t pt-4'>
-                  <div className='flex justify-between mb-3'>
-                    <span className='font-semibold'>Price per Day:</span>
-                    <span className='text-lg font-bold text-secondary'>
-                      {formatPrice(car.pricePerDay)}
-                    </span>
+              ) : (
+                <div className='space-y-4'>
+                  <div>
+                    <label className='block text-sm font-semibold mb-2'>
+                      Check-in Date
+                    </label>
+                    <DatePicker
+                      selected={startDate}
+                      onChange={(date) => {
+                        setStartDate(date);
+                        setEndDate(null);
+                      }}
+                      selectsStart
+                      startDate={startDate}
+                      endDate={endDate}
+                      minDate={new Date()}
+                      excludeDateIntervals={bookedDates}
+                      placeholderText='Select start date'
+                      className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary bg-white'
+                    />
                   </div>
-                </div>
 
-                <button
-                  onClick={handleBooking}
-                  className='w-full bg-secondary text-primary font-bold py-3 rounded-lg hover:bg-accent transition'>
-                  Continue to Booking
-                </button>
-              </div>
+                  <div>
+                    <label className='block text-sm font-semibold mb-2'>
+                      Check-out Date
+                    </label>
+                    <DatePicker
+                      selected={endDate}
+                      onChange={(date) => setEndDate(date)}
+                      selectsEnd
+                      startDate={startDate}
+                      endDate={endDate}
+                      minDate={startDate || new Date()}
+                      maxDate={getMaxEndDate()}
+                      excludeDateIntervals={bookedDates}
+                      placeholderText='Select end date'
+                      disabled={!startDate}
+                      className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary bg-white disabled:bg-gray-200'
+                    />
+                  </div>
+
+                  <div className='border-t pt-4'>
+                    <div className='flex justify-between mb-3'>
+                      <span className='font-semibold'>Price per Day:</span>
+                      <span className='text-lg font-bold text-secondary'>
+                        {formatPrice(car.pricePerDay)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={handleBooking}
+                    className='w-full bg-secondary text-primary font-bold py-3 rounded-lg hover:bg-accent transition'>
+                    Continue to Booking
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

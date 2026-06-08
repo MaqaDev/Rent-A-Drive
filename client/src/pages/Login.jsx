@@ -19,8 +19,8 @@ export const Login = () => {
     try {
       setLoading(true);
       const response = await loginUser({
-        email: data.email,
-        password: data.password,
+        email: data.email.trim(),
+        password: data.password.trim(),
       });
 
       if (response.data.success) {
@@ -29,7 +29,7 @@ export const Login = () => {
         navigate(response.data.data.role === "admin" ? "/admin" : "/");
       }
     } catch (error) {
-      toast.error(error.response?.data?.message || "Login failed");
+      toast.error("Incorrect username or password");
     } finally {
       setLoading(false);
     }

@@ -23,7 +23,6 @@ const connectDB = async () => {
 
 const seedDatabase = async () => {
   try {
-    // Drop and recreate collections
     try {
       await User.collection.drop();
       console.log("Dropped User collection");
@@ -45,7 +44,6 @@ const seedDatabase = async () => {
       console.log("Booking collection does not exist yet");
     }
 
-    // Create admin user
     const adminUser = new User({
       name: "Admin User",
       email: "admin@rentadrive.com",
@@ -55,7 +53,6 @@ const seedDatabase = async () => {
     await adminUser.save();
     console.log("✓ Admin user created:", adminUser.email);
 
-    // Create test user
     const testUser = new User({
       name: "Test User",
       email: "user@rentadrive.com",
@@ -65,14 +62,14 @@ const seedDatabase = async () => {
     await testUser.save();
     console.log("✓ Test user created:", testUser.email);
 
-    // Create sample cars - batch insert one by one for better error handling
     const cars = [
       {
         make: "Toyota",
         model: "Camry",
         year: 2023,
         category: "sedan",
-        transmission: "auto",
+        transmission: "automatic",
+        fuelType: "petrol",
         seats: 5,
         pricePerDay: 60,
         images: [],
@@ -97,6 +94,7 @@ const seedDatabase = async () => {
         year: 2023,
         category: "sedan",
         transmission: "manual",
+        fuelType: "petrol",
         seats: 5,
         pricePerDay: 50,
         images: [],
@@ -115,7 +113,8 @@ const seedDatabase = async () => {
         model: "Model 3",
         year: 2023,
         category: "luxury",
-        transmission: "auto",
+        transmission: "automatic",
+        fuelType: "electric",
         seats: 5,
         pricePerDay: 150,
         images: [],
@@ -134,7 +133,8 @@ const seedDatabase = async () => {
         model: "CR-V",
         year: 2023,
         category: "suv",
-        transmission: "auto",
+        transmission: "automatic",
+        fuelType: "petrol",
         seats: 7,
         pricePerDay: 85,
         images: [],
@@ -153,7 +153,8 @@ const seedDatabase = async () => {
         model: "Wrangler",
         year: 2023,
         category: "suv",
-        transmission: "auto",
+        transmission: "automatic",
+        fuelType: "petrol",
         seats: 5,
         pricePerDay: 95,
         images: [],
@@ -177,7 +178,8 @@ const seedDatabase = async () => {
         model: "7 Series",
         year: 2023,
         category: "luxury",
-        transmission: "auto",
+        transmission: "automatic",
+        fuelType: "petrol",
         seats: 5,
         pricePerDay: 200,
         images: [],
@@ -201,7 +203,8 @@ const seedDatabase = async () => {
         model: "Elantra",
         year: 2023,
         category: "economy",
-        transmission: "auto",
+        transmission: "automatic",
+        fuelType: "petrol",
         seats: 5,
         pricePerDay: 40,
         images: [],
@@ -220,7 +223,8 @@ const seedDatabase = async () => {
         model: "Bolt",
         year: 2023,
         category: "economy",
-        transmission: "auto",
+        transmission: "automatic",
+        fuelType: "electric",
         seats: 5,
         pricePerDay: 45,
         images: [],
@@ -239,7 +243,8 @@ const seedDatabase = async () => {
         model: "C-Class",
         year: 2023,
         category: "luxury",
-        transmission: "auto",
+        transmission: "automatic",
+        fuelType: "hybrid",
         seats: 5,
         pricePerDay: 180,
         images: [],
@@ -263,7 +268,8 @@ const seedDatabase = async () => {
         model: "Explorer",
         year: 2023,
         category: "suv",
-        transmission: "auto",
+        transmission: "automatic",
+        fuelType: "petrol",
         seats: 7,
         pricePerDay: 90,
         images: [],
@@ -287,7 +293,8 @@ const seedDatabase = async () => {
         model: "A6",
         year: 2023,
         category: "luxury",
-        transmission: "auto",
+        transmission: "automatic",
+        fuelType: "petrol",
         seats: 5,
         pricePerDay: 170,
         images: [],
@@ -311,7 +318,8 @@ const seedDatabase = async () => {
         model: "Altima",
         year: 2023,
         category: "sedan",
-        transmission: "auto",
+        transmission: "automatic",
+        fuelType: "petrol",
         seats: 5,
         pricePerDay: 55,
         images: [],
@@ -343,7 +351,7 @@ const seedDatabase = async () => {
 
     console.log("\n========== DATABASE SEEDED SUCCESSFULLY ==========");
     console.log("Admin credentials: admin@rentadrive.com / Admin1234!");
-    console.log("User credentials: user@rentadrive.com / User1234!");
+    console.log("User credentials:  user@rentadrive.com / User1234!");
     console.log("Total cars: " + createdCount);
     console.log("==================================================\n");
 

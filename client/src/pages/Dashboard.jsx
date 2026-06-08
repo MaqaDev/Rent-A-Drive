@@ -129,26 +129,25 @@ export const Dashboard = () => {
           </div>
 
           {/* Centralized Date Sort Trigger */}
-          <div className='flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100'>
-            <span className='text-xs font-bold text-gray-500 uppercase'>
-              Sort By Date:
-            </span>
-            <button
-              onClick={() =>
-                setSortOrder(sortOrder === "newest" ? "oldest" : "newest")
-              }
-              className='flex items-center gap-1 text-sm font-semibold text-primary hover:text-secondary transition'>
-              {sortOrder === "newest" ? (
-                <>
-                  Newest First <FiArrowDown className='text-secondary' />
-                </>
-              ) : (
-                <>
-                  Oldest First <FiArrowUp className='text-secondary' />
-                </>
-              )}
-            </button>
-          </div>
+          <button
+            onClick={() =>
+              setSortOrder(sortOrder === "newest" ? "oldest" : "newest")
+            }
+            className='flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg shadow-sm border border-gray-100 text-xs font-semibold text-primary hover:text-secondary transition shrink-0'>
+            {sortOrder === "newest" ? (
+              <>
+                <FiArrowDown size={13} className='text-secondary' />
+                <span className='hidden sm:inline'>Newest First</span>
+                <span className='sm:hidden'>Newest</span>
+              </>
+            ) : (
+              <>
+                <FiArrowUp size={13} className='text-secondary' />
+                <span className='hidden sm:inline'>Oldest First</span>
+                <span className='sm:hidden'>Oldest</span>
+              </>
+            )}
+          </button>
         </div>
 
         {/* 3 Main Unified Filter Cards */}

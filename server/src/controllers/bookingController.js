@@ -48,9 +48,13 @@ export const createBooking = asyncHandler(async (req, res) => {
 
   await booking.save();
 
+  const populatedBooking = await Booking.findById(booking._id)
+    .populate("car")
+    .populate("user", "name email");
+
   res.status(201).json({
     success: true,
-    data: booking,
+    data: populatedBooking,
     message: "Booking created successfully",
   });
 });

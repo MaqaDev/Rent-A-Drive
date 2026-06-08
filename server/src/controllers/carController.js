@@ -2,26 +2,36 @@ import asyncHandler from "express-async-handler";
 import Car from "../models/Car.js";
 import cloudinary from "../config/cloudinary.js";
 
-export const getAllCars = asyncHandler(async (req, res) => {
-  const { category, priceMin, priceMax, available } = req.query;
+// Server-side filtration handler
+export const getAllCars = async (req, res) => {
+  try {
+    const { search, category, priceMin, priceMax } = req.query;
+    let query = {};
 
-  let filter = {};
-  if (category) filter.category = category;
-  if (priceMin || priceMax) {
-    filter.pricePerDay = {};
-    if (priceMin) filter.pricePerDay.$gte = Number(priceMin);
-    if (priceMax) filter.pricePerDay.$lte = Number(priceMax);
+    // 1. Structural categorization routing
+    if (category) query.category = category;
+
+    // 2. Evaluated arithmetic thresholds for rental daily rates
+    if (priceMin || priceMax) {
+      query.pricePerDay = {};
+      if (priceMin) query.pricePerDay.$gte = Number(priceMin);
+      if (priceMax) query.pricePerDay.$lte = Number(priceMax);
+    }
+
+    // 3. Regular expression pattern matching for text specifications
+    if (search) {
+      query.$or = [
+        { make: { $regex: search, $options: "i" } }, // "i" means case-insensitive matching
+        { model: { $regex: search, $options: "i" } },
+      ];
+    }
+
+    const cars = await Car.find(query);
+    res.status(200).json({ success: true, data: cars });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
   }
-  if (available !== undefined) filter.available = available === "true";
-
-  const cars = await Car.find(filter);
-
-  res.status(200).json({
-    success: true,
-    data: cars,
-    count: cars.length,
-  });
-});
+};
 
 export const getCarById = asyncHandler(async (req, res) => {
   const car = await Car.findById(req.params.id);
@@ -46,6 +56,7 @@ export const createCar = asyncHandler(async (req, res) => {
     year,
     category,
     transmission,
+    fuelType,
     seats,
     pricePerDay,
     features,
@@ -62,6 +73,7 @@ export const createCar = asyncHandler(async (req, res) => {
     !year ||
     !category ||
     !transmission ||
+    !fuelType ||
     !seats ||
     !pricePerDay ||
     !mileage ||
